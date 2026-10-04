@@ -1,0 +1,106 @@
+import java.util.Scanner;
+
+public class LibrarySeatReservation {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int totalSeats = 10;
+        boolean[] seats = new boolean[totalSeats];
+
+        int choice;
+
+        do {
+            System.out.println("\n===== LIBRARY SEAT RESERVATION =====");
+            System.out.println("1. View Seats");
+            System.out.println("2. Reserve Seat");
+            System.out.println("3. Cancel Reservation");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println("\nSeat Status:");
+                    for (int i = 0; i < totalSeats; i++) {
+                        if (seats[i])
+                            System.out.println("Seat " + (i + 1) + " : Reserved");
+                        else
+                            System.out.println("Seat " + (i + 1) + " : Available");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter seat number to reserve (1-10): ");
+                    int reserveSeat = sc.nextInt();
+
+                    if (reserveSeat >= 1 && reserveSeat <= 10) {
+                        if (!seats[reserveSeat - 1]) {
+                            seats[reserveSeat - 1] = true;
+                            System.out.println("Seat reserved successfully!");
+                        } else {
+                            System.out.println("Seat already reserved!");
+                        }
+                    } else {
+                        System.out.println("Invalid seat number!");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter seat number to cancel: ");
+                    int cancelSeat = sc.nextInt();
+
+                    if (cancelSeat >= 1 && cancelSeat <= 10) {
+                        if (seats[cancelSeat - 1]) {
+                            seats[cancelSeat - 1] = false;
+                            System.out.println("Reservation cancelled!");
+                        } else {
+                            System.out.println("Seat is not reserved!");
+                        }
+                    } else {
+                        System.out.println("Invalid seat number!");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
+
+
+OUTPUT 
+===== LIBRARY SEAT RESERVATION =====
+1. View Seats
+2. Reserve Seat
+3. Cancel Reservation
+4. Exit
+Enter your choice: 2
+
+Enter seat number to reserve (1-10): 5
+Seat reserved successfully!
+
+===== LIBRARY SEAT RESERVATION =====
+1. View Seats
+2. Reserve Seat
+3. Cancel Reservation
+4. Exit
+Enter your choice: 1
+
+Seat 1 : Available
+Seat 2 : Available
+Seat 3 : Available
+Seat 4 : Available
+Seat 5 : Reserved
+…
